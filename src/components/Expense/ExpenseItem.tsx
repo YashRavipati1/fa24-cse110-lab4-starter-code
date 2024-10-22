@@ -3,15 +3,11 @@ import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 
 const ExpenseItem = (currentExpense: Expense) => {
-  // Exercise: Consume the AppContext here
-
   const { expenses, setExpenses } = useContext(AppContext);
 
-  const handleDeleteExpense = (currentExpense: Expense) => {
-    // Exercise: Remove expense from expenses context array
-    const index = expenses.indexOf(currentExpense);
-    expenses.splice(index, 1);
-    setExpenses([...expenses]);
+  const handleDeleteExpense = (expenseId: string) => {
+    const updatedExpenses = expenses.filter((expense) => expense.id !== expenseId);
+    setExpenses(updatedExpenses);
   };
 
   return (
@@ -19,7 +15,7 @@ const ExpenseItem = (currentExpense: Expense) => {
       <div>{currentExpense.name}</div>
       <div>${currentExpense.cost}</div>
       <div>
-        <button onClick={() => handleDeleteExpense(currentExpense)}>x</button>
+        <button onClick={() => handleDeleteExpense(currentExpense.id)}>x</button>
       </div>
     </li>
   );
