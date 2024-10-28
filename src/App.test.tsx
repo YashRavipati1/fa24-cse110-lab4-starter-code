@@ -26,7 +26,7 @@ describe("Create Expense", () => {
 
       const newExpense = screen.getByText("New Expense");
       const newCost = screen.getByText("$10");
-      expect(newCost).toNotBeInTheDocument();
+      expect(newCost).toBeInTheDocument();
       expect(newExpense).toBeInTheDocument();
   })
 })
