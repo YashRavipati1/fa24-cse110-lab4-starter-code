@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
-import { API_BASE_URL } from "../../constants/constants";
-import { getBudget } from "../../utils/budget-utils";
+import { fetchBudget } from "../../utils/budget-utils";
 
 
 const Budget = () => {
@@ -13,7 +12,7 @@ const Budget = () => {
 
   const loadBudget = async () => {
     try {
-      const budget = await getBudget();
+      const budget = await fetchBudget();
       setBudget(budget);
     } catch (err: any) {
       console.log(err.message);

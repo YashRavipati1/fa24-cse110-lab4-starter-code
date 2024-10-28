@@ -1,7 +1,7 @@
 import { API_BASE_URL } from "../constants/constants";
 import Budget from "../components/Budget/Budget";
 
-export const getBudget = async () => {
+export const fetchBudget = async () => {
     try {
         const response = await fetch(`${API_BASE_URL}/budget`);
         if (!response.ok) {
