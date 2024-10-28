@@ -8,14 +8,13 @@ export const fetchBudget = async () => {
             throw new Error('Failed to fetch budget');
         }
 
-        const jsonResponse = await response.json();
+        let budgetValue = response.json().then((jsonResponse) => {
+            console.log("data in fetchBudget", jsonResponse);
+            return jsonResponse.data;
+        });
 
-        if (jsonResponse.data && jsonResponse.data.length > 0) {
-            const budgetValue = jsonResponse.data[0].budget;
-            return budgetValue;
-        } else {
-            throw new Error('No budget data found');
-        }
+        console.log("response in fetchBudget", budgetValue);
+        return budgetValue;
     } catch (error) {
         console.error(error);
         return null;
