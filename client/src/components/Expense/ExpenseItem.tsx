@@ -1,6 +1,7 @@
 import { Expense } from "../../types/types";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
+import { deleteExpense } from "../../utils/expense-utils";
 
 const ExpenseItem = (currentExpense: Expense) => {
   const { expenses, setExpenses } = useContext(AppContext);
@@ -8,6 +9,7 @@ const ExpenseItem = (currentExpense: Expense) => {
   const handleDeleteExpense = (expenseId: string) => {
     const updatedExpenses = expenses.filter((expense) => expense.id !== expenseId);
     setExpenses(updatedExpenses);
+    deleteExpense(expenseId);
   };
 
   return (
