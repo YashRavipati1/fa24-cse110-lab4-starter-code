@@ -38,10 +38,10 @@ export function deleteExpense(req: Request, res: Response, expenses: Expense[]) 
     res.status(200).send({ message: "Expense deleted" });
 }
 
-export function getExpenses(req: Request, res: Response, db: Database) {
+export async function getExpenses(req: Request, res: Response, db: Database) {
     try {
-        const expenses = db.all('SELECT * FROM expenses');
-        res.status(200).send({ expenses });
+        const data = await db.all('SELECT * FROM expenses');
+        res.status(200).send({ data });
     } catch (error) {
         return res.status(400).send({ error: `Could not get expenses, + ${error}` });
     };
